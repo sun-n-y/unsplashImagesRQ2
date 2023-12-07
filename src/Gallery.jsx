@@ -8,8 +8,12 @@ const url = `https://api.unsplash.com/search/photos/?client_id=${key}&query=cat`
 const Gallery = () => {
   const { data } = useQuery({
     queryKey: ['photos'],
-    queryFn: () => axios.get(url),
+    queryFn: async () => {
+      const response = await axios.get(url);
+      return response;
+    },
   });
+  console.log(data);
 
   if (!data) {
     return <div className="loading">loading...</div>;
