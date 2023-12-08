@@ -9,7 +9,7 @@ const url = `https://api.unsplash.com/search/photos/?client_id=${key}`;
 const Gallery = () => {
   const { searchTerm } = useGlobalContext();
   const response = useQuery({
-    queryKey: ['photos'],
+    queryKey: ['photos', searchTerm],
     queryFn: async () => {
       const result = await axios.get(`${url}&query=${searchTerm}`);
       return result;
